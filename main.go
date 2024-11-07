@@ -1,11 +1,10 @@
 package main
 
 import (
+	"AsciiArtWeb/funcs"
 	"fmt"
 	"html/template"
 	"net/http"
-
-	"AsciiArtWeb/funcs"
 )
 
 type PageData struct {

@@ -6,5 +6,6 @@
 !go.sum
 !templates/
 !static/
-!banners
-!images
+!banners/
+!static/images/
+!funcs/
