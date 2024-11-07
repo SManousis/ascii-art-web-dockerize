@@ -22,6 +22,8 @@ WORKDIR /app
 # Metadata (optional)
 LABEL maintainer="Stamatis Manousis, Avgoustinos Andris"
 LABEL version="v1.0"
+LABEL description="Ascii Art Web Server"
+LABEL source="https://platform.zone01.gr/git/smanousi/ascii-art-web-dockerize"
 
 # Copy the built application and required files
 COPY --from=builder /app/ascii-art-web .
