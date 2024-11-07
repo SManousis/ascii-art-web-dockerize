@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII ART WEB</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <script>
+        function clearForm() {
+            // Clear the ASCII art result
+            document.getElementById('asciiArtResult').value = '';
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>ASCII Art Generator</h1>
+    
+    <!-- Error Message -->
+    {{if .Error}}
+        <p class="error-message">Error: {{.Error}}</p>
+    {{end}}
+    
+    <!-- Form -->
+    <form action="/" method="POST">
+        <label for="inputText">Enter text:</label>
+        <textarea id="inputText" name="inputText" rows="4" required>{{.InputText}}</textarea>
+        <label for="bannerSelect">Select banner:</label>
+        <select id="bannerSelect" name="banner" required>
+            <option value="" disabled {{if not .Banner}}selected{{end}}>Select a banner</option>
+            <option value="standard" {{if eq .Banner "standard"}}selected{{end}}>Standard</option>
+            <option value="shadow" {{if eq .Banner "shadow"}}selected{{end}}>Shadow</option>
+            <option value="thinkertoy" {{if eq .Banner "thinkertoy"}}selected{{end}}>Thinkertoy</option>
+        </select>
+        <label for="colorSelect">Select Font Color (Different colors have different backgrounds):</label>
+        <select id="colorSelect" name="colour">
+            <option value="black" {{if eq .Colour "text-black"}}selected{{end}}>Black</option>
+            <option value="white" {{if eq .Colour "text-white"}}selected{{end}}>White</option>
+            <option value="green" {{if eq .Colour "text-green"}}selected{{end}}>Green</option>
+            <option value="blue" {{if eq .Colour "text-blue"}}selected{{end}}>Blue</option>
+            <option value="red" {{if eq .Colour "text-red"}}selected{{end}}>Red</option>
+            <option value="yellow" {{if eq .Colour "text-yellow"}}selected{{end}}>Yellow</option>
+            <option value="magenta" {{if eq .Colour "text-magenta"}}selected{{end}}>Magenta</option>
+            <option value="orange" {{if eq .Colour "text-orange"}}selected{{end}}>Orange</option>
+            <option value="pink" {{if eq .Colour "text-pink"}}selected{{end}}>Pink</option>
+            <option value="purple" {{if eq .Colour "text-purple"}}selected{{end}}>Purple</option>
+            <option value="brown" {{if eq .Colour "text-brown"}}selected{{end}}>Brown</option>
+        </select>
+        <label for="alignmentSelect">Select Text Alignment:</label>
+        <select id="alignmentSelect" name="alignment">
+            <option value="align-left" {{if eq .Alignment "align-left"}}selected{{end}}>Left</option>
+            <option value="align-center" {{if eq .Alignment "align-center"}}selected{{end}}>Center</option>
+            <option value="align-right" {{if eq .Alignment "align-right"}}selected{{end}}>Right</option>
+        </select>
+
+        <button type="submit">Generate ASCII Art</button>
+        <button type="reset" onclick="clearForm()">Clear</button>
+    </form>
+</div>
+
+<!-- ASCII Art Result Container -->
+<div id="asciiArtContainer">
+    {{if .Result}}
+        <h2>Result:</h2>
+        <textarea id="asciiArtResult" class="{{.Colour}} {{.Alignment}}" readonly>{{.Result}}</textarea>
+        {{end}}
+</div>
+</body>
+</html>

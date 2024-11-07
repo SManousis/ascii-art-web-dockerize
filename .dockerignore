@@ -1,0 +1,10 @@
+
+# Ignore everything except Go files and required directories
+*
+!*.go
+!go.mod
+!go.sum
+!templates/
+!static/
+!banners
+!images
