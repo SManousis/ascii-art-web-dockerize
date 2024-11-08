@@ -1,16 +1,34 @@
-# Ascii-Art-Web-Stylize
-This is the Ascii Art Web Stylize project written in go. It's a web server for outputting the text in a graphic representation of ASCII.
+# Ascii Art Web Project
+
+This is the Ascii Art Web project written in go. It's a web server for outputting the text in a graphic representation of ASCII.
 Additionally, we have formatted the page to be visually pleasing, and added options for colour, alignment and banners.
+
+This program has been implemented with a docker function, which allows it to run in an isolated container in different operating systems.
+
 # Objectives
 
-Ascii-art-web-stylize consists in creating and running a server, in which it will be possible to use a web GUI (graphical user interface) version of a program that outputs text in a graphical representation of ASCII in several different options.
+Ascii art web consists of creating and running a server, in which it will be possible to use a web GUI (graphical user interface) version of a program that outputs text in a graphical representation of ASCII in several different options.
 
 # Authors
+
 Stamatis Manousis
 Augoustinos Andris
 
 # Usage
-On your terminal type "go run main.go". Then it should appear the following message "Server started at http://localhost:8080". When this appear open your browser and type  http://localhost:8080 and the programm should run correctly.
+
+To run the program from the terminal:
+
+    go run .
+
+    You will receive a confirmation of the address and port where the program is initialized.
+
+If you want to run the docker function:
+
+    bash run.sh
+
+    To close the docker function once you're done (so it doesn't consume resources):
+
+    bash close.sh
 
 # Implementation details
 
@@ -55,8 +73,7 @@ On your terminal type "go run main.go". Then it should appear the following mess
 
     Reading Banner Files:
         Banner files (standard.txt, shadow.txt, thinkertoy.txt) are read from the filesystem and handled using filepath.Join().
-     
-
+    
     Processing the Banner Data:
         Banner file is split into lines for processing.
         Then they are normalized to handle different line endings.
@@ -85,7 +102,7 @@ On your terminal type "go run main.go". Then it should appear the following mess
         Appropriate HTTP status codes are set based on different error conditions.
             200 OK for successful requests.
             400 Bad Request for invalid input.
-            404 Not Found if a banner file is missing.
+            404 Not Found for incorrect address.
             500 Internal Server Error for unexpected issues.
 6. Concurrency and Performance
 

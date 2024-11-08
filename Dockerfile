@@ -19,6 +19,10 @@ RUN go build -v -o ascii-art-web .
 
 # Start a new stage with a minimal Alpine image
 FROM alpine:latest
+
+# Create a non-root user and group, set permissions for /app
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 WORKDIR /app
 
 # Metadata (optional)
@@ -32,7 +36,13 @@ COPY --from=builder /app/ascii-art-web .
 COPY --from=builder /app/templates /app/templates
 COPY --from=builder /app/static /app/static     
 COPY --from=builder /app/banners /app/banners  
-COPY --from=builder /app/static/images /app/static/images   
+COPY --from=builder /app/static/images /app/static/images  
+
+# Change ownership of /app directory to appuser
+RUN chown -R appuser:appgroup /app
+
+# Switch to the non-root user
+USER appuser
 
 # Expose the port for the web server
 EXPOSE 8080
