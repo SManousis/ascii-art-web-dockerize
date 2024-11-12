@@ -38,6 +38,7 @@ COPY --from=builder /app/static /app/static
 COPY --from=builder /app/banners /app/banners  
 COPY --from=builder /app/static/images /app/static/images  
 
+RUN apk add --no-cache bash
 # Change ownership of /app directory to appuser
 RUN chown -R appuser:appgroup /app
 
